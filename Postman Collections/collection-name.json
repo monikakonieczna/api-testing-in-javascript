@@ -64,6 +64,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "35754b53-98df-4100-9115-34f14dc8e2a8",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -77,8 +78,7 @@
 									"pm.environment.set(\"token\", bodyToken)\r",
 									""
 								],
-								"type": "text/javascript",
-								"id": "35754b53-98df-4100-9115-34f14dc8e2a8"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -97,7 +97,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\",\r\n    \"I want to change something\" : \"change\",\r\n    \"Let's add\": \"new-staff\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
