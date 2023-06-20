@@ -32,7 +32,57 @@
 							}
 						}
 					],
-					"_postman_id": "86c69a42-3d4c-4363-8506-ae8ec26bef14",
+					"id": "86c69a42-3d4c-4363-8506-ae8ec26bef14",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/auth"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Token - Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string - token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"token\");\r",
+									"});\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"var bodyToken = responseJson.token; \r",
+									"pm.environment.set(\"token\", bodyToken)\r",
+									""
+								],
+								"type": "text/javascript",
+								"id": "35754b53-98df-4100-9115-34f14dc8e2a8"
+							}
+						}
+					],
+					"id": "8fbed4ed-5ebb-4987-9835-6bb411ff11ae",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -59,7 +109,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "73b3eba8-b78f-4285-bc94-fb2bf44c572e"
+			"id": "73b3eba8-b78f-4285-bc94-fb2bf44c572e"
 		},
 		{
 			"name": "Booking",
@@ -80,7 +130,7 @@
 							}
 						}
 					],
-					"_postman_id": "f84c54a9-1cb5-4570-8b8f-0d20493f8004",
+					"id": "f84c54a9-1cb5-4570-8b8f-0d20493f8004",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -127,7 +177,7 @@
 				},
 				{
 					"name": "Get Booking By Name",
-					"_postman_id": "3f56b95e-9aae-4319-8629-fc5cedffe141",
+					"id": "3f56b95e-9aae-4319-8629-fc5cedffe141",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -154,7 +204,7 @@
 				},
 				{
 					"name": "Get Booking By Date",
-					"_postman_id": "80b88ea1-63c2-446e-b2f8-8d5860fadcea",
+					"id": "80b88ea1-63c2-446e-b2f8-8d5860fadcea",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -175,8 +225,7 @@
 									"id": "31cf5f8c-d816-4a95-8dd5-3a921cd7e571",
 									"key": "id",
 									"value": null,
-									"description": "The id of the booking you would like to retrieve",
-									"type": "any"
+									"description": "The id of the booking you would like to retrieve"
 								}
 							]
 						}
@@ -185,7 +234,7 @@
 				},
 				{
 					"name": "Get Booking By ID",
-					"_postman_id": "fed0c8d8-4a23-46fc-9055-d812b297be94",
+					"id": "fed0c8d8-4a23-46fc-9055-d812b297be94",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -206,8 +255,7 @@
 									"id": "3feaa409-3385-4ce5-8d15-a72182a182ca",
 									"key": "id",
 									"value": null,
-									"description": "The id of the booking you would like to retrieve",
-									"type": "any"
+									"description": "The id of the booking you would like to retrieve"
 								}
 							]
 						}
@@ -216,7 +264,7 @@
 				},
 				{
 					"name": "Create Booking",
-					"_postman_id": "17835560-c101-4cb7-937d-bff28f6edbe8",
+					"id": "17835560-c101-4cb7-937d-bff28f6edbe8",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
 							"accept": true
@@ -239,8 +287,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\": \"Sally\",\r\n    \"lastname\": \"Brown\",\r\n    \"totalprice\": 111,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2013-02-23\",\r\n        \"checkout\": \"2014-10-23\"\r\n    },\r\n    \"additionalneeds\": \"Breakfast\"\r\n}",
-							"options": {}
+							"raw": "{\r\n    \"firstname\": \"Sally\",\r\n    \"lastname\": \"Brown\",\r\n    \"totalprice\": 111,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2013-02-23\",\r\n        \"checkout\": \"2014-10-23\"\r\n    },\r\n    \"additionalneeds\": \"Breakfast\"\r\n}"
 						},
 						"url": "{{baseUrl}}/booking"
 					},
@@ -278,7 +325,7 @@
 				},
 				{
 					"name": "Update Booking",
-					"_postman_id": "34eefc02-d0e0-4283-ac28-ac2285d7538c",
+					"id": "34eefc02-d0e0-4283-ac28-ac2285d7538c",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
 							"accept": true
@@ -327,8 +374,7 @@
 									"id": "acad6ac4-89c9-45d3-bffe-1449452665f2",
 									"key": "id",
 									"value": null,
-									"description": "ID for the booking you want to update",
-									"type": "any"
+									"description": "ID for the booking you want to update"
 								}
 							]
 						}
@@ -337,7 +383,7 @@
 				},
 				{
 					"name": "Partial Update Booking",
-					"_postman_id": "3f912953-6d55-4370-9ad4-81fc406635c8",
+					"id": "3f912953-6d55-4370-9ad4-81fc406635c8",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
 							"accept": true
@@ -432,8 +478,7 @@
 									"id": "a85e0801-7e75-4e88-b4fe-7c4c78d38c85",
 									"key": "id",
 									"value": null,
-									"description": "ID for the booking you want to update",
-									"type": "any"
+									"description": "ID for the booking you want to update"
 								}
 							]
 						}
@@ -442,7 +487,7 @@
 				},
 				{
 					"name": "Delete Booking",
-					"_postman_id": "dda27df0-f6c6-4ffa-b8df-bab7eacb17e5",
+					"id": "dda27df0-f6c6-4ffa-b8df-bab7eacb17e5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -482,8 +527,7 @@
 									"id": "5f23470c-cbee-4746-87a1-8926879cd8bb",
 									"key": "id",
 									"value": "1",
-									"description": "ID for the booking you want to delete",
-									"type": "string"
+									"description": "ID for the booking you want to delete"
 								}
 							]
 						}
@@ -491,7 +535,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "83a0909e-996a-40c4-9d3e-7822f85348b9"
+			"id": "83a0909e-996a-40c4-9d3e-7822f85348b9"
 		},
 		{
 			"name": "Ping",
@@ -515,7 +559,7 @@
 							}
 						}
 					],
-					"_postman_id": "30365e94-5ce6-4f68-a4f4-271894692b5f",
+					"id": "30365e94-5ce6-4f68-a4f4-271894692b5f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -527,7 +571,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "cf26660f-4b92-4d08-8883-a93a49ad1f13"
+			"id": "cf26660f-4b92-4d08-8883-a93a49ad1f13"
 		}
 	],
 	"event": [
