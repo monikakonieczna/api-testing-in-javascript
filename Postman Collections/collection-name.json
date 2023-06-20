@@ -582,6 +582,36 @@
 						"url": "{{baseUrl}}/ping"
 					},
 					"response": []
+				},
+				{
+					"name": "Health Check - duplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "2c69a4f7-dfea-4ff6-9668-12cad8491fec"
+							}
+						}
+					],
+					"id": "3646325c-7fcb-4ab1-ac71-ed7de7ed85bc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/ping"
+					},
+					"response": []
 				}
 			],
 			"id": "cf26660f-4b92-4d08-8883-a93a49ad1f13"
