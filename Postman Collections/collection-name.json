@@ -97,7 +97,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\",\r\n    \"I want to change something\" : \"change\",\r\n    \"Let's add\": \"new-staff\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\",\r\n    \"I want to change something\" : \"change\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
