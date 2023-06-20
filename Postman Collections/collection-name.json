@@ -97,7 +97,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\",\r\n    \"I want to change something\" : \"change\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\",\r\n    \"I want to change something\" : \"change\",\r\n    \"Let's add\": \"new-staff\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -531,6 +531,19 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "my new test",
+					"id": "51c20f16-c6e9-46cc-988a-42bf5c8cc2da",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": ""
 					},
 					"response": []
 				}
