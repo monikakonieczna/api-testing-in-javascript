@@ -1,0 +1,555 @@
+{
+	"info": {
+		"_postman_id": "30ea5a4a-8f69-4e81-8ff5-9a1fe206739f",
+		"name": "restful-booker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Create Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string - token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"token\");\r",
+									"});\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"var bodyToken = responseJson.token; \r",
+									"pm.environment.set(\"token\", bodyToken)\r",
+									""
+								],
+								"type": "text/javascript",
+								"id": "35754b53-98df-4100-9115-34f14dc8e2a8"
+							}
+						}
+					],
+					"_postman_id": "86c69a42-3d4c-4363-8506-ae8ec26bef14",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"{{admin}}\",\r\n    \"password\" : \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/auth"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "73b3eba8-b78f-4285-bc94-fb2bf44c572e"
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Get All Bookings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "949cac1d-c2ed-435e-8f61-b0b436f7ec06"
+							}
+						}
+					],
+					"_postman_id": "f84c54a9-1cb5-4570-8b8f-0d20493f8004",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/booking",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"booking"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": null,
+									"description": "Optional: Return bookings with a specific firstname",
+									"disabled": true
+								},
+								{
+									"key": "lastname",
+									"value": null,
+									"description": "Optional: Return bookings with a specific lastname",
+									"disabled": true
+								},
+								{
+									"key": "checkin",
+									"value": null,
+									"description": "Optional: Return bookings that have a checkin date greater than or equal to the set checkin date. Format must be CCYY-MM-DD",
+									"disabled": true
+								},
+								{
+									"key": "checkout",
+									"value": null,
+									"description": "Optional: Return bookings that have a checkout date greater than or equal to the set checkout date. Format must be CCYY-MM-DD",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking By Name",
+					"_postman_id": "3f56b95e-9aae-4319-8629-fc5cedffe141",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/booking?lastname=jones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"booking"
+							],
+							"query": [
+								{
+									"key": "lastname",
+									"value": "jones"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking By Date",
+					"_postman_id": "80b88ea1-63c2-446e-b2f8-8d5860fadcea",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/booking/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"booking",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "31cf5f8c-d816-4a95-8dd5-3a921cd7e571",
+									"key": "id",
+									"value": null,
+									"description": "The id of the booking you would like to retrieve",
+									"type": "any"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking By ID",
+					"_postman_id": "fed0c8d8-4a23-46fc-9055-d812b297be94",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/booking/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"booking",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "3feaa409-3385-4ce5-8d15-a72182a182ca",
+									"key": "id",
+									"value": null,
+									"description": "The id of the booking you would like to retrieve",
+									"type": "any"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Booking",
+					"_postman_id": "17835560-c101-4cb7-937d-bff28f6edbe8",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Sally\",\r\n    \"lastname\": \"Brown\",\r\n    \"totalprice\": 111,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2013-02-23\",\r\n        \"checkout\": \"2014-10-23\"\r\n    },\r\n    \"additionalneeds\": \"Breakfast\"\r\n}",
+							"options": {}
+						},
+						"url": "{{baseUrl}}/booking"
+					},
+					"response": [
+						{
+							"id": "10f1c1da-89aa-40ce-9785-704e7ff4ba67",
+							"name": "Create Booking XSS",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"<script>alert(\\\"gotcha!\\\")</script>\",\r\n    \"lastname\": \"Brown\",\r\n    \"totalprice\": 111,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2013-02-23\",\r\n        \"checkout\": \"2014-10-23\"\r\n    },\r\n    \"additionalneeds\": \"Breakfast\"\r\n}"
+								},
+								"url": "{{baseUrl}}/booking"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Update Booking",
+					"_postman_id": "34eefc02-d0e0-4283-ac28-ac2285d7538c",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"description": "Optional: Sets an authorization token to access the PUT endpoint, can be used as an alternative to the Authorization",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{basic_authorization}}",
+								"description": "Optional: Basic authorization header to access the PUT endpoint, can be used as an alternative to the Cookie header",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/booking/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"booking",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "acad6ac4-89c9-45d3-bffe-1449452665f2",
+									"key": "id",
+									"value": null,
+									"description": "ID for the booking you want to update",
+									"type": "any"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update Booking",
+					"_postman_id": "3f912953-6d55-4370-9ad4-81fc406635c8",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets what format the response body is returned in. Can be application/json or application/xml",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Sets the format of payload you are sending. Can be application/json or text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"description": "Optional: Sets an authorization token to access the PUT endpoint, can be used as an alternative to the Authorization",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{basic_authorization}}",
+								"description": "Optional: Basic authorization header to access the PUT endpoint, can be used as an alternative to the Cookie header",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/booking/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"booking",
+								":id"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": null,
+									"description": "Optional: Firstname for the guest who made the booking",
+									"disabled": true
+								},
+								{
+									"key": "lastname",
+									"value": null,
+									"description": "Optional: Lastname for the guest who made the booking",
+									"disabled": true
+								},
+								{
+									"key": "totalprice",
+									"value": null,
+									"description": "Optional: The total price for the booking",
+									"disabled": true
+								},
+								{
+									"key": "depositpaid",
+									"value": null,
+									"description": "Optional: Whether the deposit has been paid or not",
+									"disabled": true
+								},
+								{
+									"key": "checkin",
+									"value": null,
+									"description": "Optional: Date the guest is checking in",
+									"disabled": true
+								},
+								{
+									"key": "checkout",
+									"value": null,
+									"description": "Optional: Date the guest is checking out",
+									"disabled": true
+								},
+								{
+									"key": "additionalneeds",
+									"value": null,
+									"description": "Optional: Any other needs the guest has",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"id": "a85e0801-7e75-4e88-b4fe-7c4c78d38c85",
+									"key": "id",
+									"value": null,
+									"description": "ID for the booking you want to update",
+									"type": "any"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Booking",
+					"_postman_id": "dda27df0-f6c6-4ffa-b8df-bab7eacb17e5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"description": "Optional: Sets an authorization token to access the DELETE endpoint, can be used as an alternative to the Authorization",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{basic_authorization}}",
+								"description": "Optional: Basic authorization header to access the DELETE endpoint, can be used as an alternative to the Cookie header",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/booking/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"booking",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "5f23470c-cbee-4746-87a1-8926879cd8bb",
+									"key": "id",
+									"value": "1",
+									"description": "ID for the booking you want to delete",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "83a0909e-996a-40c4-9d3e-7822f85348b9"
+		},
+		{
+			"name": "Ping",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"id": "2c69a4f7-dfea-4ff6-9668-12cad8491fec"
+							}
+						}
+					],
+					"_postman_id": "30365e94-5ce6-4f68-a4f4-271894692b5f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/ping"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "cf26660f-4b92-4d08-8883-a93a49ad1f13"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "34c50e11-224a-469f-83c9-a7c651a80d53"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "5bbf7f6d-bd36-4e39-b7b1-38cc4dec8f6c"
+			}
+		}
+	]
+}
